@@ -260,6 +260,11 @@ th {
 /*--------------------------------------------------------------
 # Typography
 --------------------------------------------------------------*/
+
+@font-face {
+  font-family: MISFITS; src: url('fonts/MISFITS_.TTF');
+}
+
 body,
 button,
 input,
@@ -352,6 +357,61 @@ html {
 
 body {
 	background: #fff; /* Fallback for when there is no custom background color defined. */
+}
+
+#top-block {
+width: 100%;
+height: 5.65em;
+position: fixed;
+top: 0;
+background: #455A64;
+box-shadow: 2px 0 10px 5px #000;
+}
+
+#left-block{
+  height: 700px;
+  width: 31.05%;
+  position: fixed;
+  top: 90px;
+  background: #263238;
+}
+#left-block::before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #263238;
+  z-index: 2;
+  transform-origin: right bottom;
+  transform: skewY(12deg);
+}
+
+#right-block{
+  height: 700px;
+  width: 2.2%;
+  position: fixed;
+  top: 90px;
+  right: 0;
+  background: #263238;
+}
+
+#right-block::before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #263238;
+  z-index: 2;
+  transform-origin: left bottom;
+  transform: skewY(-72deg);
+}
+
+#content {
+  background: url('images/castle4.jpg') no-repeat fixed;
+  width: 67%;
+  margin: -3em auto 0 31%;
+  padding: 1em 2% 3em 2%;
+  box-shadow: inset 0 0 20px 10px black;
 }
 
 blockquote:before,
@@ -526,6 +586,19 @@ a:focus {
 a:hover,
 a:active {
 	outline: 0;
+}
+
+.site-title a {
+  font-family: MISFITS;
+  font-size: 5vw;
+  color: rgba(0,0,20,1);
+  text-align: center;
+	text-decoration: none;
+  text-shadow: 0 0 20px rgba(255,255,163,1);
+  position: fixed;
+  top: 10px;
+  left: 3%;
+  z-index: 3;
 }
 
 /*--------------------------------------------------------------
