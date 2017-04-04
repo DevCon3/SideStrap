@@ -158,6 +158,42 @@ function sidestrap_customize_register( $wp_customize ) {
 		'section'  => 'sidestrap_post_colors',
 		'settings' => 'sidestrap_post_title_color'
 	)));
+
+	/**
+	* Adds Background Options To Admin Panel*
+	*/
+	$wp_customize->add_section( 'sidestrap_background_options', array(
+	  'title'    => __('Background', 'SideStrap'),
+	  'priority'  => 50
+	));
+
+	/**
+	* Background Color Options*
+	*/
+	$wp_customize->add_setting( 'sidestrap_custom_background_color', array(
+		'default'    => '#ffffff',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_custom_background_color_control', array(
+		'label'    => __('Background Color', 'SideStrap'),
+		'section'  => 'sidestrap_background_options',
+		'settings' => 'sidestrap_custom_background_color'
+	)));
+
+	/**
+	* Background Image Options*
+	*/
+	$wp_customize->add_setting( 'sidestrap_background_image', array(
+		'default'    => get_bloginfo('template_directory') . '/images/castle4.jpg',
+		'type'  => 'theme_mod'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Image_Control($wp_customize,'sidestrap_background_image_control', array(
+		'label'    => __('Background Image', 'SideStrap'),
+		'section'  => 'sidestrap_background_options',
+		'settings' => 'sidestrap_background_image'
+	)));
 }
 
 add_action( 'customize_register', 'sidestrap_customize_register' );
@@ -195,6 +231,12 @@ function sidestrap_customizer_css_changes() { ?>
 		.entry-title,
 		.entry-title a {
 		  color: <?php echo get_theme_mod('sidestrap_post_title_color'); ?>;
+		}
+		#content {
+			background-color: <?php echo get_theme_mod('sidestrap_custom_background_color'); ?>;
+			background-image: url(<?php echo get_theme_mod('sidestrap_background_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
+			background-repeat: no-repeat;
+      background-attachment: fixed;
 		}
 
 	</style>
