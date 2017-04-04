@@ -114,6 +114,50 @@ function sidestrap_customize_register( $wp_customize ) {
 	  'section'  => 'sidestrap_custom_title_colors',
 		'settings' => 'sidestrap_outer_shadow_color'
 	)));
+
+	/**
+	* Adds Menu Colors Section To Admin Panel*
+	*/
+	$wp_customize->add_section( 'sidestrap_custom_menu_colors', array(
+		'title'    => __('Menu Colors', 'SideStrap'),
+	  'priority'  => 20
+	));
+
+	/**
+	* Menu Color Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_custom_menu_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_menu_color_control', array(
+		'label'    => __('Outer Title Shadow', 'SideStrap'),
+		'section'  => 'sidestrap_custom_menu_colors',
+		'settings' => 'sidestrap_custom_menu_color'
+	)));
+
+	/**
+	* Adds Post Color Options To Admin Panel*
+	*/
+	$wp_customize->add_section( 'sidestrap_post_colors', array(
+		'title'    => __('Post Colors', 'SideStrap'),
+	  'priority'  => 40
+	));
+
+	/**
+	* Post Title Color Options*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_title_color', array(
+		'default'    => '#000000',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_title_control', array(
+		'label'    => __('Post Title Color', 'SideStrap'),
+		'section'  => 'sidestrap_post_colors',
+		'settings' => 'sidestrap_post_title_color'
+	)));
 }
 
 add_action( 'customize_register', 'sidestrap_customize_register' );
@@ -138,11 +182,19 @@ function sidestrap_customizer_css_changes() { ?>
 			color: <?php echo get_theme_mod('sidestrap_custom_title_color'); ?>;
 		}
 		.site-title a {
-			text-shadow: 0 0 10px <?php echo get_theme_mod('sidestrap_inner_shadow_color'); ?>;
+			text-shadow: 0 0 20px <?php echo get_theme_mod('sidestrap_inner_shadow_color'); ?>;
 		}
 		.h1background {
 			color: <?php echo get_theme_mod('sidestrap_outer_shadow_color'); ?>;
-			text-shadow: 0 0 25 <?php echo get_theme_mod('sidestrap_outer_shadow_color'); ?>;
+			text-shadow: 0 0 20 <?php echo get_theme_mod('sidestrap_outer_shadow_color'); ?>;
+		}
+		.main-navigation li,
+		.main-navigation a {
+			color: <?php echo get_theme_mod('sidestrap_custom_menu_color'); ?>;
+		}
+		.entry-title,
+		.entry-title a {
+		  color: <?php echo get_theme_mod('sidestrap_post_title_color'); ?>;
 		}
 
 	</style>

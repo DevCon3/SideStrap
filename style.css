@@ -489,7 +489,6 @@ article {
   font-family: Aller_Rg;
   line-height: 1.4em;
   color: rgba(0,0,20,1);
-  text-shadow: 0 0 20px #455A64;
 }
 
 /*--------------------------------------------------------------
@@ -615,7 +614,7 @@ a:active {
   color: #000000;
   text-align: center;
 	text-decoration: none;
-  text-shadow: 0 0 10px #DBE7A2;
+  text-shadow: 0 0 20px #DBE7A2;
   position: fixed;
   top: 0;
   left: 3%;
@@ -624,8 +623,8 @@ a:active {
 
 .h1background {
   color: #ffffff;
-  text-shadow: 0 0 25px white;
-	top: -.65em;
+  text-shadow: 0 0 20px white;
+	top: -.61em;
 	z-index: 2;
 }
 
@@ -637,6 +636,18 @@ a:active {
   z-index: 3;
 	top: 2em;
 	font-size: 1.3em;
+}
+
+.entry-title,
+.entry-title a {
+  text-decoration: none;
+  font-family: MISFITS;
+  font-size: 3vw;
+  color: #000000;
+}
+
+.entry-title a:hover {
+color: #555555;
 }
 
 /*--------------------------------------------------------------
