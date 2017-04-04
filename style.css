@@ -612,10 +612,10 @@ a:active {
 .h1background {
   font-family: MISFITS;
   font-size: 5vw;
-  color: rgba(0,0,20,1);
+  color: #000000;
   text-align: center;
 	text-decoration: none;
-  text-shadow: 0 0 20px rgba(255,255,163,1);
+  text-shadow: 0 0 10px #DBE7A2;
   position: fixed;
   top: 0;
   left: 3%;
@@ -623,8 +623,8 @@ a:active {
 }
 
 .h1background {
-  color: white;
-  text-shadow: 0 0 20px white;
+  color: #ffffff;
+  text-shadow: 0 0 25px white;
 	top: -.65em;
 	z-index: 2;
 }

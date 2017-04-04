@@ -16,16 +16,19 @@ function sidestrap_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
 	/**
-	* Top Block Custom Color*
+	* Adds Block Section To Admin Panel*
+	*/
+	$wp_customize->add_section( 'sidestrap_custom_block_colors', array(
+		'title'    => __('Block Colors', 'SideStrap'),
+	  'priority'  => 30
+	));
+
+	/**
+	* Top Block Color Option*
 	*/
 	$wp_customize->add_setting( 'sidestrap_top_block_color', array(
 		'default'    => '#455A64',
 	  'transport'  => 'refresh'
-	));
-
-	$wp_customize->add_section( 'sidestrap_custom_block_colors', array(
-		'title'    => __('Block Colors', 'SideStrap'),
-	  'priority'  => 30
 	));
 
 	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_top_block_control', array(
@@ -35,7 +38,7 @@ function sidestrap_customize_register( $wp_customize ) {
 	)));
 
 	/**
-	* Left Block Custom Color*
+	* Left Block Color Option*
 	*/
 	$wp_customize->add_setting( 'sidestrap_left_block_color', array(
 		'default'    => '#263238',
@@ -49,7 +52,7 @@ function sidestrap_customize_register( $wp_customize ) {
 	)));
 
 	/**
-	* Right Block Custom Color*
+	* Right Block Color Option*
 	*/
 	$wp_customize->add_setting( 'sidestrap_right_block_color', array(
 		'default'    => '#263238',
@@ -60,6 +63,56 @@ function sidestrap_customize_register( $wp_customize ) {
 		'label'    => __('Right Block Color', 'SideStrap'),
 		'section'  => 'sidestrap_custom_block_colors',
 		'settings' => 'sidestrap_right_block_color'
+	)));
+
+	/**
+	* Adds Title Section To Admin Panel*
+	*/
+	$wp_customize->add_section( 'sidestrap_custom_title_colors', array(
+		'title'    => __('Title Colors', 'SideStrap'),
+	  'priority'  => 20
+	));
+
+	/**
+	* Title Color Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_custom_title_color', array(
+		'default'    => '#000000',
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_custom_title_control', array(
+		'label'    => __('Title Color', 'SideStrap'),
+	  'section'  => 'sidestrap_custom_title_colors',
+		'settings' => 'sidestrap_custom_title_color'
+	)));
+
+	/**
+	* Title Inner Shadow Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_inner_shadow_color', array(
+		'default'    => '#DBE7A2',
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_inner_shadow_control', array(
+		'label'    => __('Inner Title Shadow', 'SideStrap'),
+	  'section'  => 'sidestrap_custom_title_colors',
+		'settings' => 'sidestrap_inner_shadow_color'
+	)));
+
+	/**
+	* Title Outer Shadow Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_outer_shadow_color', array(
+		'default'    => '#FFFFFF',
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_outer_shadow_control', array(
+		'label'    => __('Outer Title Shadow', 'SideStrap'),
+	  'section'  => 'sidestrap_custom_title_colors',
+		'settings' => 'sidestrap_outer_shadow_color'
 	)));
 }
 
@@ -81,6 +134,17 @@ function sidestrap_customizer_css_changes() { ?>
 		#right-block::before {
 			background: <?php echo get_theme_mod('sidestrap_right_block_color'); ?>;
 		}
+    .site-title a {
+			color: <?php echo get_theme_mod('sidestrap_custom_title_color'); ?>;
+		}
+		.site-title a {
+			text-shadow: 0 0 10px <?php echo get_theme_mod('sidestrap_inner_shadow_color'); ?>;
+		}
+		.h1background {
+			color: <?php echo get_theme_mod('sidestrap_outer_shadow_color'); ?>;
+			text-shadow: 0 0 25 <?php echo get_theme_mod('sidestrap_outer_shadow_color'); ?>;
+		}
+
 	</style>
 <?php }
 
