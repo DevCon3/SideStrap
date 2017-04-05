@@ -38,6 +38,20 @@ function sidestrap_customize_register( $wp_customize ) {
 	)));
 
 	/**
+	* Top Block Image Options*
+	*/
+	$wp_customize->add_setting( 'sidestrap_top_block_image', array(
+		'default'    => get_bloginfo('template_directory') . '/images/castle4.jpg',
+		'type'  => 'theme_mod'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Image_Control($wp_customize,'sidestrap_top_block_image_control', array(
+		'label'    => __('Top Block Image', 'SideStrap'),
+		'section'  => 'sidestrap_custom_block_colors',
+		'settings' => 'sidestrap_top_block_image'
+	)));
+
+	/**
 	* Left Block Color Option*
 	*/
 	$wp_customize->add_setting( 'sidestrap_left_block_color', array(
@@ -204,7 +218,8 @@ add_action( 'customize_register', 'sidestrap_customize_register' );
 function sidestrap_customizer_css_changes() { ?>
 	<style type="text/css">
     #top-block {
-			background: <?php echo get_theme_mod('sidestrap_top_block_color'); ?>;
+			background-color: <?php echo get_theme_mod('sidestrap_top_block_color'); ?>;
+			background-image: url(<?php echo get_theme_mod('sidestrap_top_block_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
 		}
 		#left-block,
 		#left-block::before {
