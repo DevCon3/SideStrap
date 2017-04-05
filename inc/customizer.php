@@ -105,7 +105,7 @@ function sidestrap_customize_register( $wp_customize ) {
 	* Title Inner Shadow Option*
 	*/
 	$wp_customize->add_setting( 'sidestrap_inner_shadow_color', array(
-		'default'    => '#DBE7A2',
+		'default'    => '#c5e829',
 	  'transport'  => 'refresh'
 	));
 
@@ -146,16 +146,16 @@ function sidestrap_customize_register( $wp_customize ) {
 	));
 
 	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_menu_color_control', array(
-		'label'    => __('Outer Title Shadow', 'SideStrap'),
+		'label'    => __('Menu Color', 'SideStrap'),
 		'section'  => 'sidestrap_custom_menu_colors',
 		'settings' => 'sidestrap_custom_menu_color'
 	)));
 
 	/**
-	* Adds Post Color Options To Admin Panel*
+	* Adds Post Options To Admin Panel*
 	*/
-	$wp_customize->add_section( 'sidestrap_post_colors', array(
-		'title'    => __('Post Colors', 'SideStrap'),
+	$wp_customize->add_section( 'sidestrap_post_options', array(
+		'title'    => __('Post Options', 'SideStrap'),
 	  'priority'  => 40
 	));
 
@@ -169,8 +169,51 @@ function sidestrap_customize_register( $wp_customize ) {
 
 	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_title_control', array(
 		'label'    => __('Post Title Color', 'SideStrap'),
-		'section'  => 'sidestrap_post_colors',
+		'section'  => 'sidestrap_post_options',
 		'settings' => 'sidestrap_post_title_color'
+	)));
+
+	// Inlcude the Alpha Color Picker.
+	require_once( dirname( __FILE__ ) . '/alpha-color-picker/alpha-color-picker.php' );
+
+  /**
+	* Post Background Color
+	*/
+	$wp_customize->add_setting(
+		'sidestrap_post_background',
+		array(
+			'default'     => 'rgba(255,255,163,.65)',
+			'transport'   => 'refresh'
+		)
+	);
+
+	/**
+	* Post Background Color Control
+	*/
+	$wp_customize->add_control(
+		new Customize_Alpha_Color_Control(
+			$wp_customize,
+			'sidestrap_post_background_control',
+			array(
+				'label'     => __( 'Post Background Color', 'sidestrap' ),
+				'section'   => 'sidestrap_post_options',
+				'settings'  => 'sidestrap_post_background',
+				'capability'  => 'edit_theme_options',
+				'transport'   => 'refresh'
+	)));
+
+	/**
+	* Post Link Color Options*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_links_color', array(
+		'default'    => '#640c0e',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_link_control', array(
+		'label'    => __('Post Link Color', 'SideStrap'),
+		'section'  => 'sidestrap_post_options',
+		'settings' => 'sidestrap_post_links_color'
 	)));
 
 	/**
@@ -208,6 +251,29 @@ function sidestrap_customize_register( $wp_customize ) {
 		'section'  => 'sidestrap_background_options',
 		'settings' => 'sidestrap_background_image'
 	)));
+
+  /**
+	* Adds Widget Options To Admin Panel
+	*/
+	$wp_customize->add_section( 'sidestrap_widget_options', array(
+	  'title'    => __('Widget Colors', 'SideStrap'),
+	  'priority'  => 50
+	));
+
+	/**
+	* Widget Color Options*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_background_color', array(
+		'default'    => '#ffffff',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_widget_background_color_control', array(
+		'label'    => __('Gradient Color', 'SideStrap'),
+		'section'  => 'sidestrap_widget_options',
+		'settings' => 'sidestrap_widget_background_color'
+	)));
+
 }
 
 add_action( 'customize_register', 'sidestrap_customize_register' );
@@ -252,6 +318,19 @@ function sidestrap_customizer_css_changes() { ?>
 			background-image: url(<?php echo get_theme_mod('sidestrap_background_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
 			background-repeat: no-repeat;
       background-attachment: fixed;
+			background-size: cover;
+		}
+		article {
+			background-color: <?php echo get_theme_mod('sidestrap_post_background'); ?>;
+		}
+		article a {
+			color: <?php echo get_theme_mod('sidestrap_post_links_color'); ?>;
+		}
+		.sidebar-module {
+			background: -moz-linear-gradient(45deg,<?php echo get_theme_mod('sidestrap_widget_background_color'); ?> 0%, rgba(242,82,2,0) 100%); /* FF3.6-15 */
+		  background: -webkit-linear-gradient(45deg,<?php echo get_theme_mod('sidestrap_widget_background_color'); ?> 0%,rgba(242,82,2,0) 100%); /* Chrome10-25,Safari5.1-6 */
+		  background: linear-gradient(45deg,<?php echo get_theme_mod('sidestrap_widget_background_color'); ?> 0%,rgba(242,82,2,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='<?php echo get_theme_mod('sidestrap_widget_background_color'); ?>', endColorstr='#00f25202',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 		}
 
 	</style>
