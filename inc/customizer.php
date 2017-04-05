@@ -16,6 +16,79 @@ function sidestrap_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
 	/**
+	* Adds Shadows Section To Admin Panel*
+	*/
+	$wp_customize->add_section( 'sidestrap_shadows_options', array(
+		'title'    => __('Shadows', 'SideStrap'),
+	  'priority'  => 20
+	));
+
+	/**
+	* Option To Remove Title Shadow*
+	*/
+	$wp_customize->add_setting( 'sidestrap_title_shadow', array(
+		'default'    => '0',
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_title_shadow_control',
+        array(
+            'label'          => __( 'Remove Title Shadow?', 'SideStrap' ),
+            'section'        => 'sidestrap_shadows_options',
+            'settings'       => 'sidestrap_title_shadow',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Option To Remove Widget Shadows*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_shadows', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_widget_shadow_control',
+        array(
+            'label'          => __( 'Remove Widget Shadows?', 'SideStrap' ),
+            'section'        => 'sidestrap_shadows_options',
+            'settings'       => 'sidestrap_widget_shadows',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Option To Remove Content Shadows*
+	*/
+	$wp_customize->add_setting( 'sidestrap_content_shadows', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_content_shadow_control',
+        array(
+            'label'          => __( 'Remove Content Shadows?', 'SideStrap' ),
+            'section'        => 'sidestrap_shadows_options',
+            'settings'       => 'sidestrap_content_shadows',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Adds Borders Section To Admin Panel*
+	*/
+	$wp_customize->add_section( 'sidestrap_borders_options', array(
+		'title'    => __('Borders', 'SideStrap'),
+	  'priority'  => 20
+	));
+
+	/**
 	* Adds Block Section To Admin Panel*
 	*/
 	$wp_customize->add_section( 'sidestrap_custom_block_colors', array(
@@ -66,6 +139,20 @@ function sidestrap_customize_register( $wp_customize ) {
 	)));
 
 	/**
+	* Left Block Image Options*
+	*/
+	$wp_customize->add_setting( 'sidestrap_left_block_image', array(
+		'default'    => get_bloginfo('template_directory') . '/images/castle4.jpg',
+		'type'  => 'theme_mod'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Image_Control($wp_customize,'sidestrap_left_block_image_control', array(
+		'label'    => __('Left Block Image', 'SideStrap'),
+		'section'  => 'sidestrap_custom_block_colors',
+		'settings' => 'sidestrap_left_block_image'
+	)));
+
+	/**
 	* Right Block Color Option*
 	*/
 	$wp_customize->add_setting( 'sidestrap_right_block_color', array(
@@ -80,11 +167,25 @@ function sidestrap_customize_register( $wp_customize ) {
 	)));
 
 	/**
+	* Right Block Image Options*
+	*/
+	$wp_customize->add_setting( 'sidestrap_right_block_image', array(
+		'default'    => get_bloginfo('template_directory') . '/images/castle4.jpg',
+		'type'  => 'theme_mod'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Image_Control($wp_customize,'sidestrap_right_block_image_control', array(
+		'label'    => __('Right Block Image', 'SideStrap'),
+		'section'  => 'sidestrap_custom_block_colors',
+		'settings' => 'sidestrap_right_block_image'
+	)));
+
+	/**
 	* Adds Title Section To Admin Panel*
 	*/
 	$wp_customize->add_section( 'sidestrap_custom_title_colors', array(
 		'title'    => __('Title Colors', 'SideStrap'),
-	  'priority'  => 20
+	  'priority'  => 30
 	));
 
 	/**
@@ -203,6 +304,20 @@ function sidestrap_customize_register( $wp_customize ) {
 	)));
 
 	/**
+	* Post Text Color Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_text_color', array(
+		'default'    => '#000000',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_text_control', array(
+		'label'    => __('Post Text Color', 'SideStrap'),
+		'section'  => 'sidestrap_post_options',
+		'settings' => 'sidestrap_post_text_color'
+	)));
+
+	/**
 	* Post Link Color Options*
 	*/
 	$wp_customize->add_setting( 'sidestrap_post_links_color', array(
@@ -279,62 +394,9 @@ function sidestrap_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'sidestrap_customize_register' );
 
 /**
-* Outputs Customizer CSS changes*
+* Pulls in Customizer CSS changes*
 */
-function sidestrap_customizer_css_changes() { ?>
-	<style type="text/css">
-    #top-block {
-			background-color: <?php echo get_theme_mod('sidestrap_top_block_color'); ?>;
-			background-image: url(<?php echo get_theme_mod('sidestrap_top_block_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
-		}
-		#left-block,
-		#left-block::before {
-			background: <?php echo get_theme_mod('sidestrap_left_block_color'); ?>;
-		}
-		#right-block,
-		#right-block::before {
-			background: <?php echo get_theme_mod('sidestrap_right_block_color'); ?>;
-		}
-    .site-title a {
-			color: <?php echo get_theme_mod('sidestrap_custom_title_color'); ?>;
-		}
-		.site-title a {
-			text-shadow: 0 0 20px <?php echo get_theme_mod('sidestrap_inner_shadow_color'); ?>;
-		}
-		.h1background {
-			color: <?php echo get_theme_mod('sidestrap_outer_shadow_color'); ?>;
-			text-shadow: 0 0 20 <?php echo get_theme_mod('sidestrap_outer_shadow_color'); ?>;
-		}
-		.main-navigation li,
-		.main-navigation a {
-			color: <?php echo get_theme_mod('sidestrap_custom_menu_color'); ?>;
-		}
-		.entry-title,
-		.entry-title a {
-		  color: <?php echo get_theme_mod('sidestrap_post_title_color'); ?>;
-		}
-		#content {
-			background-color: <?php echo get_theme_mod('sidestrap_custom_background_color'); ?>;
-			background-image: url(<?php echo get_theme_mod('sidestrap_background_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
-			background-repeat: no-repeat;
-      background-attachment: fixed;
-			background-size: cover;
-		}
-		article {
-			background-color: <?php echo get_theme_mod('sidestrap_post_background'); ?>;
-		}
-		article a {
-			color: <?php echo get_theme_mod('sidestrap_post_links_color'); ?>;
-		}
-		.sidebar-module {
-			background: -moz-linear-gradient(45deg,<?php echo get_theme_mod('sidestrap_widget_background_color'); ?> 0%, rgba(242,82,2,0) 100%); /* FF3.6-15 */
-		  background: -webkit-linear-gradient(45deg,<?php echo get_theme_mod('sidestrap_widget_background_color'); ?> 0%,rgba(242,82,2,0) 100%); /* Chrome10-25,Safari5.1-6 */
-		  background: linear-gradient(45deg,<?php echo get_theme_mod('sidestrap_widget_background_color'); ?> 0%,rgba(242,82,2,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-		  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='<?php echo get_theme_mod('sidestrap_widget_background_color'); ?>', endColorstr='#00f25202',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-		}
-
-	</style>
-<?php }
+require_once( dirname( __FILE__ ) . '/customizer-css.php' );
 
 add_action('wp_head', 'sidestrap_customizer_css_changes');
 
