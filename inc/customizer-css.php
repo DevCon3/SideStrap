@@ -3,17 +3,17 @@ function sidestrap_customizer_css_changes() { ?>
 	<style type="text/css">
     #top-block {
 			background-color: <?php echo get_theme_mod('sidestrap_top_block_color'); ?>;
-			background-image: url(<?php echo get_theme_mod('sidestrap_top_block_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
+			background-image: url(<?php echo get_theme_mod('sidestrap_top_block_image', get_template_directory_uri() . '/images/castle4.jpg'); ?>);
 		}
 		#left-block,
 		#left-block::before {
 			background-color: <?php echo get_theme_mod('sidestrap_left_block_color'); ?>;
-      background-image: url(<?php echo get_theme_mod('sidestrap_left_block_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
+      background-image: url(<?php echo get_theme_mod('sidestrap_left_block_image', get_template_directory_uri() . '/images/castle4.jpg'); ?>);
 		}
 		#right-block,
 		#right-block::before {
 			background: <?php echo get_theme_mod('sidestrap_right_block_color'); ?>;
-      background-image: url(<?php echo get_theme_mod('sidestrap_right_block_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
+      background-image: url(<?php echo get_theme_mod('sidestrap_right_block_image', get_template_directory_uri() . '/images/castle4.jpg'); ?>);
 		}
 		.site-title a {
       color: <?php echo get_theme_mod('sidestrap_custom_title_color'); ?>;
@@ -37,7 +37,7 @@ function sidestrap_customizer_css_changes() { ?>
 		}
 		#content {
 			background-color: <?php echo get_theme_mod('sidestrap_custom_background_color'); ?>;
-			background-image: url(<?php echo get_theme_mod('sidestrap_background_image', get_bloginfo('template_url'). '/images/castle4.jpg'); ?>);
+			background-image: url(<?php echo get_theme_mod('sidestrap_background_image', get_template_directory_uri() . '/images/castle4.jpg'); ?>);
 			background-repeat: no-repeat;
       background-attachment: fixed;
 			background-size: cover;

@@ -114,7 +114,7 @@ function sidestrap_customize_register( $wp_customize ) {
 	* Top Block Image Options*
 	*/
 	$wp_customize->add_setting( 'sidestrap_top_block_image', array(
-		'default'    => get_bloginfo('template_directory') . '/images/castle4.jpg',
+		'default'    => get_template_directory_uri() . '/images/castle4.jpg',
 		'type'  => 'theme_mod'
 	));
 
@@ -142,7 +142,7 @@ function sidestrap_customize_register( $wp_customize ) {
 	* Left Block Image Options*
 	*/
 	$wp_customize->add_setting( 'sidestrap_left_block_image', array(
-		'default'    => get_bloginfo('template_directory') . '/images/castle4.jpg',
+		'default'    => get_template_directory_uri() . '/images/castle4.jpg',
 		'type'  => 'theme_mod'
 	));
 
@@ -170,7 +170,7 @@ function sidestrap_customize_register( $wp_customize ) {
 	* Right Block Image Options*
 	*/
 	$wp_customize->add_setting( 'sidestrap_right_block_image', array(
-		'default'    => get_bloginfo('template_directory') . '/images/castle4.jpg',
+		'default'    => get_template_directory_uri() . '/images/castle4.jpg',
 		'type'  => 'theme_mod'
 	));
 
@@ -357,7 +357,7 @@ function sidestrap_customize_register( $wp_customize ) {
 	* Background Image Options*
 	*/
 	$wp_customize->add_setting( 'sidestrap_background_image', array(
-		'default'    => get_bloginfo('template_directory') . '/images/castle4.jpg',
+		'default'    => get_template_directory_uri() . '/images/castle4.jpg',
 		'type'  => 'theme_mod'
 	));
 
