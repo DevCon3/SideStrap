@@ -377,8 +377,8 @@ box-shadow: 2px 0 10px 5px #000;
   position: fixed;
   top: 0;
   background: #263238;
-	-webkit-clip-path: polygon(0 0, 100% 12.7%, 100% 100%, 0% 100%);
-  clip-path: polygon(0 0, 100% 12.7%, 100% 100%, 0% 100%);
+	-webkit-clip-path: polygon(0 0, 100% 12.8%, 100% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 12.8%, 100% 100%, 0% 100%);
 }
 
 
@@ -468,7 +468,7 @@ article {
   border-bottom: 5px solid rgba(122,0,0,1);
   box-shadow: 0 0 20px 5px black;
   padding: 10px;
-	margin: 1.5em auto;
+	margin: 3em auto;
   font-size: 1.6vw;
   font-family: Aller_Rg;
   line-height: 1.4em;

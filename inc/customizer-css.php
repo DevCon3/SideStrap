@@ -36,8 +36,8 @@ function sidestrap_customizer_css_changes() { ?>
 		  color: <?php echo get_theme_mod('sidestrap_post_title_color'); ?>;
 		}
 		#content {
-			background-color: <?php echo get_theme_mod('sidestrap_custom_background_color'); ?>;
-			background-image: url(<?php echo get_theme_mod('sidestrap_background_image', get_template_directory_uri() . '/images/castle4.jpg'); ?>);
+			background-color: <?php echo get_theme_mod('sidestrap_main_background_color'); ?>;
+			background-image: url(<?php echo get_theme_mod('sidestrap_main_background_image', get_template_directory_uri() . '/images/castle4.jpg'); ?>);
 			background-repeat: no-repeat;
       background-attachment: fixed;
 			background-size: cover;
