@@ -15,32 +15,40 @@ function sidestrap_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
-	/**
-	********************************************
-	*********** Title Options Panel ************
-	********************************************
-	*/
+/**
+********************************************
+*********** Title Options Panel ************
+********************************************
+*/
+	$wp_customize->add_panel( 'sidestrap_titles', array(
+		'capability'     => 'edit_theme_options',
+		'theme_supports' => '',
+		'title'          => esc_html__( 'Titles', 'sidestrap' ),
+		'description'    => esc_html__( 'Panel to select SideStrap title options', 'sidestrap' ),
+		'priority'       => 30
+	) );
 
-			/**
-			*********** Title Options Section ************
-			*/
-			$wp_customize->add_section( 'sidestrap_custom_title_colors', array(
-				'title'    => __('Title Options', 'sidestrap'),
-			  'priority'  => 30
-			));
+	/**
+	*********** Site Title Section ************
+	*/
+		$wp_customize->add_section( 'sidestrap_site_title_colors', array(
+			'title'    => __('Site Title', 'sidestrap'),
+			'priority' => 10,
+			'panel'    => 'sidestrap_titles'
+		));
 
 			/**
 			* Title Color Option*
 			*/
-			$wp_customize->add_setting( 'sidestrap_custom_title_color', array(
+			$wp_customize->add_setting( 'sidestrap_site_title_color', array(
 				'default'    => '#000000',
 			  'transport'  => 'refresh'
 			));
 
-			$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_custom_title_control', array(
-				'label'    => __('Title Color', 'sidestrap'),
-			  'section'  => 'sidestrap_custom_title_colors',
-				'settings' => 'sidestrap_custom_title_color'
+			$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_site_title_control', array(
+				'label'    => __('Site Title Color', 'sidestrap'),
+			  'section'  => 'sidestrap_site_title_colors',
+				'settings' => 'sidestrap_site_title_color'
 			)));
 
 			/**
@@ -53,7 +61,7 @@ function sidestrap_customize_register( $wp_customize ) {
 
 			$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_inner_shadow_control', array(
 				'label'    => __('Inner Shadow', 'sidestrap'),
-			  'section'  => 'sidestrap_custom_title_colors',
+			  'section'  => 'sidestrap_site_title_colors',
 				'settings' => 'sidestrap_inner_shadow_color'
 			)));
 
@@ -67,7 +75,7 @@ function sidestrap_customize_register( $wp_customize ) {
 
 			$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_outer_shadow_control', array(
 				'label'    => __('Outer Shadow', 'sidestrap'),
-			  'section'  => 'sidestrap_custom_title_colors',
+			  'section'  => 'sidestrap_site_title_colors',
 				'settings' => 'sidestrap_outer_shadow_color'
 			)));
 
@@ -85,10 +93,79 @@ function sidestrap_customize_register( $wp_customize ) {
 		        'sidestrap_title_shadow_control',
 		        array(
 		            'label'          => __( 'Remove Title Shadows?', 'sidestrap' ),
-		            'section'        => 'sidestrap_custom_title_colors',
+		            'section'        => 'sidestrap_site_title_colors',
 		            'settings'       => 'sidestrap_title_shadow',
 		            'type'           => 'checkbox'
 		  )));
+
+			/**
+			*********** Site Tagline Section ************
+			*/
+				$wp_customize->add_section( 'sidestrap_tagline_section', array(
+					'title'    => __('Site Tagline', 'sidestrap'),
+				  'priority' => 20,
+					'panel'    => 'sidestrap_titles'
+				));
+
+				/**
+				* Site Tagline Color*
+				*/
+				$wp_customize->add_setting( 'sidestrap_site_tagline_color', array(
+					'default'    => '#000000',
+					'transport'  => 'refresh'
+				));
+
+				$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_site_tagline_control', array(
+					'label'    => __('Tagline Color', 'sidestrap'),
+					'section'  => 'sidestrap_tagline_section',
+					'settings' => 'sidestrap_site_tagline_color'
+				)));
+
+		/**
+		*********** Post Title Section ************
+		*/
+			$wp_customize->add_section( 'sidestrap_post_title', array(
+				'title'    => __('Post Titles', 'sidestrap'),
+			  'priority' => 20,
+				'panel'    => 'sidestrap_titles'
+			));
+
+			/**
+			* Post Title Color*
+			*/
+			$wp_customize->add_setting( 'sidestrap_post_title_color', array(
+				'default'    => '#000000',
+				'transport'  => 'refresh'
+			));
+
+			$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_title_control', array(
+				'label'    => __('Post Title Color', 'SideStrap'),
+				'section'  => 'sidestrap_post_title',
+				'settings' => 'sidestrap_post_title_color'
+			)));
+
+			/**
+			*********** Widget Title Section ************
+			*/
+				$wp_customize->add_section( 'sidestrap_widget_title', array(
+					'title'    => __('Widget Titles', 'sidestrap'),
+				  'priority' => 20,
+					'panel'    => 'sidestrap_titles'
+				));
+
+				/**
+				* Widget Title Color*
+				*/
+				$wp_customize->add_setting( 'sidestrap_widget_title_color', array(
+					'default'    => '#000000',
+					'transport'  => 'refresh'
+				));
+
+				$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_widget_title_control', array(
+					'label'    => __('Widget Title Color', 'SideStrap'),
+					'section'  => 'sidestrap_widget_title',
+					'settings' => 'sidestrap_widget_title_color'
+				)));
 
 /**
 ********************************************
@@ -174,6 +251,48 @@ function sidestrap_customize_register( $wp_customize ) {
 				'capability'  => 'edit_theme_options',
 				'transport'   => 'refresh'
 	)));
+
+	/**
+	*********** Widget Section ************
+	*/
+	$wp_customize->add_section( 'sidestrap_widget_background_options', array(
+	  'title'    => __('Widgets', 'sidestrap'),
+	  'priority'  => 30,
+		'panel'    => 'sidestrap_backgrounds'
+	));
+
+	/**
+	* Widget Background Color Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_background_color', array(
+		'default'    => '#ffffff',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_widget_background_color_control', array(
+		'label'    => __('Widget Background Color', 'sidestrap'),
+		'section'  => 'sidestrap_widget_background_options',
+		'settings' => 'sidestrap_widget_background_color'
+	)));
+
+	/**
+	* Widget Gradient Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_gradient', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_widget_gradient_control',
+        array(
+            'label'          => __( 'Use Solid Color?', 'SideStrap' ),
+            'section'        => 'sidestrap_widget_background_options',
+            'settings'       => 'sidestrap_widget_gradient',
+            'type'           => 'checkbox'
+  )));
 
 	/**
 	*********** Top Block Section ************
@@ -287,10 +406,47 @@ function sidestrap_customize_register( $wp_customize ) {
 	)));
 
 	/**
+	*********** Footer Section ************
+	*/
+	$wp_customize->add_section( 'sidestrap_custom_footer_section', array(
+		'title'     => __('Footer', 'sidestrap'),
+	  'priority'  => 50,
+		'panel'     => 'sidestrap_backgrounds'
+	));
+
+	/**
+	* Footer Color Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_custom_footer_color', array(
+		'default'    => '#263238',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_custom_footer_color_control', array(
+		'label'    => __('Footer Color', 'sidestrap'),
+		'section'  => 'sidestrap_custom_footer_section',
+		'settings' => 'sidestrap_custom_footer_color'
+	)));
+
+	/**
+	* Footer Image Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_custom_footer_image', array(
+		'default'    => get_template_directory_uri() . '/images/castle4.jpg',
+		'type'  => 'theme_mod'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Image_Control($wp_customize,'sidestrap_custom_footer_image_control', array(
+		'label'    => __('Footer Image', 'sidestrap'),
+		'section'  => 'sidestrap_custom_footer_section',
+		'settings' => 'sidestrap_custom_footer_image'
+	)));
+
+	/**
 	* Adds Shadows Section To Admin Panel*
 	*/
 	$wp_customize->add_section( 'sidestrap_shadows_options', array(
-		'title'    => __('Shadows', 'SideStrap'),
+		'title'    => __('Shadows', 'sidestrap'),
 	  'priority'  => 50
 	));
 
@@ -326,19 +482,306 @@ function sidestrap_customize_register( $wp_customize ) {
         $wp_customize,
         'sidestrap_content_shadow_control',
         array(
-            'label'          => __( 'Remove Content Shadows?', 'SideStrap' ),
+            'label'          => __( 'Remove Content Shadows?', 'sidestrap' ),
             'section'        => 'sidestrap_shadows_options',
             'settings'       => 'sidestrap_content_shadows',
             'type'           => 'checkbox'
   )));
 
+/**
+	********************************************
+	*************** Borders Panel **************
+	********************************************
+*/
+  $wp_customize->add_panel( 'sidestrap_borders', array(
+	  'capability'     => 'edit_theme_options',
+	  'theme_supports' => '',
+	  'title'          => esc_html__( 'Borders', 'sidestrap' ),
+	  'description'    => esc_html__( 'Panel to select SideStrap borders', 'sidestrap' ),
+	  'priority'       => 60
+  ));
+
 	/**
-	* Adds Borders Section To Admin Panel*
+	*********** Post Borders Section ************
 	*/
-	$wp_customize->add_section( 'sidestrap_borders_options', array(
-		'title'    => __('Borders', 'SideStrap'),
-	  'priority'  => 20
+	$wp_customize->add_section( 'sidestrap_post_borders', array(
+		'title'    => __('Posts', 'sidestrap'),
+	  'priority' => 10,
+		'panel'    => 'sidestrap_borders'
 	));
+
+	/**
+	* Top Border Color*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_top_border_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_top_border_color_control', array(
+		'label'    => __('Top Border', 'sidestrap'),
+		'section'  => 'sidestrap_post_borders',
+		'settings' => 'sidestrap_post_top_border_color'
+	)));
+
+	/**
+	* Top Border Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_top_border_option', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_post_top_border_option_control',
+        array(
+            'label'          => __( 'Remove This Border?', 'sidestrap' ),
+            'section'        => 'sidestrap_post_borders',
+            'settings'       => 'sidestrap_post_top_border_option',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Bottom Border Color*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_bottom_border_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_bottom_border_color_control', array(
+		'label'    => __('Bottom Border', 'sidestrap'),
+		'section'  => 'sidestrap_post_borders',
+		'settings' => 'sidestrap_post_bottom_border_color'
+	)));
+
+	/**
+	* Bottom Border Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_bottom_border_option', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_post_bottom_border_option_control',
+        array(
+            'label'          => __( 'Remove This Border?', 'sidestrap' ),
+            'section'        => 'sidestrap_post_borders',
+            'settings'       => 'sidestrap_post_bottom_border_option',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Left Border Color*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_left_border_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_left_border_color_control', array(
+		'label'    => __('Left Border', 'sidestrap'),
+		'section'  => 'sidestrap_post_borders',
+		'settings' => 'sidestrap_post_left_border_color'
+	)));
+
+	/**
+	* Left Border Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_left_border_option', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_post_left_border_option_control',
+        array(
+            'label'          => __( 'Remove This Border?', 'sidestrap' ),
+            'section'        => 'sidestrap_post_borders',
+            'settings'       => 'sidestrap_post_left_border_option',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Right Border Color*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_right_border_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_right_border_color_control', array(
+		'label'    => __('Right Border', 'sidestrap'),
+		'section'  => 'sidestrap_post_borders',
+		'settings' => 'sidestrap_post_right_border_color'
+	)));
+
+	/**
+	* Right Border Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_post_right_border_option', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_post_right_border_option_control',
+        array(
+            'label'          => __( 'Remove This Border?', 'sidestrap' ),
+            'section'        => 'sidestrap_post_borders',
+            'settings'       => 'sidestrap_post_right_border_option',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	*********** Widget Borders Section ************
+	*/
+	$wp_customize->add_section( 'sidestrap_widget_borders', array(
+		'title'    => __('Widgets', 'sidestrap'),
+	  'priority' => 10,
+		'panel'    => 'sidestrap_borders'
+	));
+
+	/**
+	* Top Border Color*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_top_border_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_widget_top_border_color_control', array(
+		'label'    => __('Top Border', 'sidestrap'),
+		'section'  => 'sidestrap_widget_borders',
+		'settings' => 'sidestrap_widget_top_border_color'
+	)));
+
+	/**
+	* Top Border Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_top_border_option', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_widget_top_border_option_control',
+        array(
+            'label'          => __( 'Remove This Border?', 'sidestrap' ),
+            'section'        => 'sidestrap_widget_borders',
+            'settings'       => 'sidestrap_widget_top_border_option',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Bottom Border Color*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_bottom_border_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_widget_bottom_border_color_control', array(
+		'label'    => __('Bottom Border', 'sidestrap'),
+		'section'  => 'sidestrap_widget_borders',
+		'settings' => 'sidestrap_widget_bottom_border_color'
+	)));
+
+	/**
+	* Bottom Border Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_bottom_border_option', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_widget_bottom_border_option_control',
+        array(
+            'label'          => __( 'Remove This Border?', 'sidestrap' ),
+            'section'        => 'sidestrap_widget_borders',
+            'settings'       => 'sidestrap_widget_bottom_border_option',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Left Border Color*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_left_border_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_widget_left_border_color_control', array(
+		'label'    => __('Left Border', 'sidestrap'),
+		'section'  => 'sidestrap_widget_borders',
+		'settings' => 'sidestrap_widget_left_border_color'
+	)));
+
+	/**
+	* Left Border Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_left_border_option', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_widget_left_border_option_control',
+        array(
+            'label'          => __( 'Remove This Border?', 'sidestrap' ),
+            'section'        => 'sidestrap_widget_borders',
+            'settings'       => 'sidestrap_widget_left_border_option',
+            'type'           => 'checkbox'
+  )));
+
+	/**
+	* Right Border Color*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_right_border_color', array(
+		'default'    => '#FFFFFF',
+		'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_widget_right_border_color_control', array(
+		'label'    => __('Right Border', 'sidestrap'),
+		'section'  => 'sidestrap_widget_borders',
+		'settings' => 'sidestrap_widget_right_border_color'
+	)));
+
+	/**
+	* Right Border Option*
+	*/
+	$wp_customize->add_setting( 'sidestrap_widget_right_border_option', array(
+		'default'    => 0,
+	  'transport'  => 'refresh'
+	));
+
+	$wp_customize->add_control(
+    new WP_Customize_Control(
+        $wp_customize,
+        'sidestrap_widget_right_border_option_control',
+        array(
+            'label'          => __( 'Remove This Border?', 'sidestrap' ),
+            'section'        => 'sidestrap_widget_borders',
+            'settings'       => 'sidestrap_widget_right_border_option',
+            'type'           => 'checkbox'
+  )));
 
 	/**
 	* Adds Menu Colors Section To Admin Panel*
@@ -360,20 +803,6 @@ function sidestrap_customize_register( $wp_customize ) {
 		'label'    => __('Menu Color', 'SideStrap'),
 		'section'  => 'sidestrap_custom_menu_colors',
 		'settings' => 'sidestrap_custom_menu_color'
-	)));
-
-	/**
-	* Post Title Color Options*
-	*/
-	$wp_customize->add_setting( 'sidestrap_post_title_color', array(
-		'default'    => '#000000',
-		'transport'  => 'refresh'
-	));
-
-	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_post_title_control', array(
-		'label'    => __('Post Title Color', 'SideStrap'),
-		'section'  => 'sidestrap_post_options',
-		'settings' => 'sidestrap_post_title_color'
 	)));
 
 	/**
@@ -402,28 +831,6 @@ function sidestrap_customize_register( $wp_customize ) {
 		'label'    => __('Post Link Color', 'SideStrap'),
 		'section'  => 'sidestrap_post_options',
 		'settings' => 'sidestrap_post_links_color'
-	)));
-
-  /**
-	* Adds Widget Options To Admin Panel
-	*/
-	$wp_customize->add_section( 'sidestrap_widget_options', array(
-	  'title'    => __('Widget Colors', 'SideStrap'),
-	  'priority'  => 50
-	));
-
-	/**
-	* Widget Color Options*
-	*/
-	$wp_customize->add_setting( 'sidestrap_widget_background_color', array(
-		'default'    => '#ffffff',
-		'transport'  => 'refresh'
-	));
-
-	$wp_customize->add_control( new WP_Customize_Color_Control($wp_customize,'sidestrap_widget_background_color_control', array(
-		'label'    => __('Gradient Color', 'SideStrap'),
-		'section'  => 'sidestrap_widget_options',
-		'settings' => 'sidestrap_widget_background_color'
 	)));
 
 }

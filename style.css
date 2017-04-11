@@ -396,6 +396,7 @@ box-shadow: 2px 0 10px 5px #000;
   width: 67%;
   margin: 2.2em auto 0 31%;
   box-shadow: inset 0 0 20px 10px black;
+	transition:transform 10ms linear;
 }
 
 blockquote:before,
@@ -464,15 +465,13 @@ max-width: 100;
 
 article {
   width: 93%;
-  background: rgba(255,255,163,.35);
-  border-bottom: 5px solid rgba(122,0,0,1);
-  box-shadow: 0 0 20px 5px black;
   padding: 10px;
 	margin: 3em auto;
   font-size: 1.6vw;
   font-family: Aller_Rg;
   line-height: 1.4em;
   color: rgba(0,0,20,1);
+	box-shadow: 0 0 20px 5px black;
 }
 
 .post-thumb img {
@@ -492,8 +491,8 @@ aside {
   width: 90%;
   height: 15em;
   padding: 5px;
-  margin: 10px auto;
-  box-shadow: inset 0 0 20px 5px black;
+  margin: 10px auto 30px auto;
+  box-shadow: inset 0 0 10px 5px black, 0 0 20px 10px black;
 }
 
 .sidebar-module ul {
@@ -507,7 +506,7 @@ aside {
 
 #sidestrap-footer {
   width: 67%;
-  height: 7em;
+  height: 600px;
 	margin-left: 31%;
 }
 
@@ -657,7 +656,6 @@ a:active {
 }
 
 .site-description {
-  color: rgba(180,170,160,1);
   font-family: Aller_rg;
 	position: fixed;
   left: 3%;
@@ -691,7 +689,7 @@ color: #555555;
   width: 35%;
   position: fixed;
   font-family: Aller_Rg;
-  top: 20px;
+  top: 0;
   right: 0;
   z-index: 30;
 }
@@ -701,11 +699,10 @@ color: #555555;
 
 .main-navigation li,
 .main-navigation a {
+  float: right;
   display: inline-block;
-	color: white;
-	font-size: 1.5vw;
-	padding: 10px;
-	border-radius: 10px;
+	font-size: 1.7vw;
+	padding: 5px;
 	text-decoration: none;
 }
 
@@ -885,6 +882,12 @@ color: #555555;
 	margin: 0 0 1.5em;
 }
 
+.widget-title {
+	margin: 0;
+	font-size: 1.3em;
+	font-family: MISFITS;
+}
+
 /* Make sure select elements fit in widgets. */
 .widget select {
 	max-width: 100%;
@@ -1034,7 +1037,74 @@ object {
 .gallery-caption {
 	display: block;
 }
-#calendar-3 .widget-title {
+
+body,
+#featured-posts-section {
+background: #263238;
+}
+
+#featured-posts-section {
+width: 67%;
+margin-left: 31%;
+}
+
+#featured-posts-section h2 {
+	font-family: MISFITS;
+  font-size: 3.5vw;
   color: #000000;
+  text-align: center;
+  text-shadow: 0 0 20px #c5e829, 0 3px 3px #ffffff;
 	margin: 0;
+}
+
+.featured-post-tile {
+background: #dd3333;
+color: #000000;
+width: 29%;
+padding: 1em;
+display: inline-block;
+margin-left: 23px;
+border-left: 5px solid #d1e86d;
+border-right: 5px solid #d1e86d;
+border-top: 5px solid #515151;
+border-bottom: 5px solid #515151;
+box-shadow: inset 0 0 20px 5px black, 0 0 20px 10px black;
+}
+
+#tile1 {
+  margin: 20px 0 20px 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+.slideUp {
+animation-name: slideUp;
+-webkit-animation-name: slideUp;
+animation-duration: 1s;
+-webkit-animation-duration: 1s;
+visibility: visible;
+}
+
+@keyframes slideUp {
+0% {
+	 opacity: 0;
+	 -webkit-transform: translateY(70%);
+}
+100% {
+	 opacity: 1;
+	 -webkit-transform: translateY(0%);
+}
+}
+
+@-webkit-keyframes slideUp {
+0% {
+	 opacity: 0;
+	 -webkit-transform: translateY(70%);
+}
+100% {
+	 opacity: 1;
+	 -webkit-transform: translateY(0%);
+}
 }

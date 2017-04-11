@@ -50,6 +50,37 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
+</div><!-- #content -->
+<div id="featured-posts-section">
+	<h2>Featured Articles</h2>
+	  <div id="tile1" class="featured-post-tile">
+			<span class="dashicons dashicons-megaphone">37</span>
+			<hr>
+	    <h3>Featured Post Title</h3>
+	    <div class="featured-post-content">
+	      <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec.</p>
+	    </div>
+	  </div>
+	  <div class="featured-post-tile">
+			<span class="dashicons dashicons-megaphone"></span>
+			<hr>
+	    <h3>Featured Post Title</h3>
+	    <div class="featured-post-content">
+	      <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec.</p>
+	    </div>
+	  </div>
+	  <div class="featured-post-tile">
+			<span class="dashicons dashicons-megaphone"></span>
+			<hr>
+	    <h3>Featured Post Title</h3>
+	    <div class="featured-post-content">
+	      <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec.</p>
+	    </div>
+	  </div><!-- featured-posts-section -->
+
+		<button onclick="slideout('secondary'), shrink_left('left-block'), slide_left('featured-posts-section'), grow_right('right-block');">Change Layout</button>
+		<button onclick="fadein('tile1');">Fade In</button>
+	</div><!-- content-area -->
 
 <?php
 get_sidebar();
